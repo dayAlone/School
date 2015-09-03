@@ -1,0 +1,38 @@
+doctype html
+html
+
+  head
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css")
+    link(rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
+
+  body
+    .container
+        .row
+            .col-xs-4.col-xs-offset-4
+                if !auth
+                    br
+                    br
+                    form(action="/auth/login" method="post")
+                        .form-group
+                            label(for="email") Email
+                            input.form-control(type="email" id="email" name="email" placeholder="my@mail.com" required autofocus)
+                        .form-group
+                            label(for="password") Password
+                            input.form-control(type="password" id="password" name="password" required)
+                        .row
+                            .col-xs-6
+                                button.btn.btn-md.btn-primary.btn-block(type="submit") Login
+                            .col-xs-6
+                                .btn-group
+                                    a.btn.btn-md.btn-default(href="/auth/facebook/login")
+                                        span.fa.fa-facebook
+                                    a.btn.btn-md.btn-default(href="/auth/vk/login")
+                                        span.fa.fa-vk
+                                    
+                else
+                    .text-right
+                        br
+                        a.btn-default.btn(href="/auth/logout/") Exit
+                    h1 Заголовок
+                    #app
+                    script(type="application/javascript", src="/js/app.js")

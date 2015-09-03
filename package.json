@@ -1,0 +1,20 @@
+{
+  "name": "smm-school",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrey Kolmakov",
+  "license": "ISC",
+  "devDependencies": {
+    "koa-bodyparser": "^2.0.1",
+    "koa-passport": "^1.1.6",
+    "koa-router": "^5.1.2",
+    "lodash": "^3.10.1",
+    "passport-facebook": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-vkontakte": "^0.4.0"
+  }
+}
