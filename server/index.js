@@ -10,6 +10,8 @@ import router from './routes/';
 const app = koa();
 app.keys = [config.secret];
 
+//require('koa-locals')(app);
+
 const middlewares = fs.readdirSync(path.join(path.dirname(), './server/middlewares')).sort();
 
 middlewares.forEach((middleware) => {

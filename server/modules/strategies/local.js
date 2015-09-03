@@ -1,19 +1,33 @@
 import User from '../../models/user';
 import passport from 'koa-passport';
+import co from 'co';
 import { Strategy as LocalStrategy } from 'passport-local';
+
+function UserAuthError(message) { this.message = message; }
 
 export default function() {
     passport.use(new LocalStrategy(
         {usernameField: 'email', passwordField: 'password'},
         (email, password, done) => {
-            User.findOne({email: email}, function(err, user) {
-                if (err) return done(err);
+            co(function* () {
+                // anti-bruteforce pause
+                yield callback => { setTimeout(callback, 100); };
 
-                if (!user || !user.checkPassword(password)) {
-                    // don't say whether the user exists
-                    return done(null, false, {message: 'Нет такого пользователя или пароль неверен.'});
+                let user = yield User.findOne({email: email}).exec();
+
+                if (!user) throw new UserAuthError('Мы хорошо поискали, но такого пользователя у&nbsp;нас еще не&nbsp;было.');
+                if (!user.checkPassword(password)) throw new UserAuthError('Пароль не подходит, попробуй еще раз.');
+
+            })
+            .then(user => {
+                done(null, user);
+            }, err => {
+                if (err instanceof UserAuthError) {
+                    done(null, false, {message: err.message});
+                } else {
+                    done(err);
                 }
-                return done(null, user);
+
             });
         }
     ));

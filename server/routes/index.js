@@ -7,7 +7,9 @@ let router = new Router();
 
 router
     .get('/', function* () {
-            this.body = this.render('index', {auth: this.isAuthenticated()});
+            this.session.messages = this.session.messages || [];
+            this.body = this.render('index', {auth: this.isAuthenticated(), messages: this.session.messages});
+            delete this.session.messages;
         });
 
 routes.forEach(route => {

@@ -9,9 +9,12 @@ html
     .container
         .row
             .col-xs-4.col-xs-offset-4
+                
                 if !auth
                     br
                     br
+                    each message in messages
+                        div.alert.alert-danger!= message
                     form(action="/auth/login" method="post")
                         .form-group
                             label(for="email") Email

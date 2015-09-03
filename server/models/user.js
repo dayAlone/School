@@ -51,28 +51,28 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.virtual('password')
-.set(function(password) {
+    .set(function(password) {
 
-    if (password !== undefined) {
-        if (password.length < 4) {
-            this.invalidate('password', 'Пароль должен быть минимум 4 символа.');
+        if (password !== undefined) {
+            if (password.length < 4) {
+                this.invalidate('password', 'Пароль должен быть минимум 4 символа.');
+            }
         }
-    }
 
-    this._plainPassword = password;
+        this._plainPassword = password;
 
-    if (password) {
-        this.salt = crypto.randomBytes(config.crypto.hash.length).toString('base64');
-        this.passwordHash = crypto.pbkdf2Sync(password, this.salt, config.crypto.hash.iterations, config.crypto.hash.length);
-    } else {
-        // remove password (unable to login w/ password any more, but can use providers)
-        this.salt = undefined;
-        this.passwordHash = undefined;
-    }
-})
-.get(function() {
-    return this._plainPassword;
-});
+        if (password) {
+            this.salt = crypto.randomBytes(config.crypto.hash.length).toString('base64');
+            this.passwordHash = crypto.pbkdf2Sync(password, this.salt, config.crypto.hash.iterations, config.crypto.hash.length);
+        } else {
+            // remove password (unable to login w/ password any more, but can use providers)
+            this.salt = undefined;
+            this.passwordHash = undefined;
+        }
+    })
+    .get(function() {
+        return this._plainPassword;
+    });
 
 userSchema.methods.checkPassword = function(password) {
     if (!password) return false; // empty password means no login by password
@@ -81,4 +81,4 @@ userSchema.methods.checkPassword = function(password) {
     return crypto.pbkdf2Sync(password, this.salt, config.crypto.hash.iterations, config.crypto.hash.length) == this.passwordHash;
 };
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);
