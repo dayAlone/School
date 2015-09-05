@@ -15,7 +15,7 @@ html
                     br
                     each message in messages
                         div.alert.alert-danger!= message
-                    form(action="/auth/login" method="post")
+                    form(action="/auth/local/login" method="post", name="login", id="login")
                         .form-group
                             label(for="email") Email
                             input.form-control(type="email" id="email" name="email" placeholder="my@mail.com" required autofocus)
@@ -31,11 +31,32 @@ html
                                         span.fa.fa-facebook
                                     a.btn.btn-md.btn-default(href="/auth/vk/login")
                                         span.fa.fa-vk
-                                    
+                    script.
+                        /*
+                        document.forms.login.onsubmit = function (e) {
+                            var xhr = new XMLHttpRequest();
+                            
+                        	var f = e.target,
+                        		formData = "email=" + f.elements.namedItem('email').value + "&password=" + f.elements.namedItem('password').value,
+                        		xhr = new XMLHttpRequest();
+                            
+                            xhr.open("POST", f.getAttribute('action'), true);
+                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                            xhr.onreadystatechange = function(data) {
+                                if (xhr.readyState != 4) return;
+                                if (xhr.status == 200) {
+                                    var data = JSON.parse(xhr.responseText);
+                                    if (!data.error) location.href = location.href;
+                                }
+                            };
+                            xhr.send(formData);
+                            e.preventDefault();
+                        }*/
                 else
                     .text-right
                         br
-                        a.btn-default.btn(href="/auth/logout/") Exit
+                        a.btn-default.btn(href="/auth/local/logout/") Exit
                     h1 Заголовок
                     #app
                     script(type="application/javascript", src="/js/app.js")

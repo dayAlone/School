@@ -1,4 +1,4 @@
-import User from '../../models/user';
+import User from '../../../models/user';
 import passport from 'koa-passport';
 import co from 'co';
 import { Strategy as LocalStrategy } from 'passport-local';
@@ -15,9 +15,13 @@ export default function() {
 
                 let user = yield User.findOne({email: email}).exec();
 
-                if (!user) throw new UserAuthError('Мы хорошо поискали, но такого пользователя у&nbsp;нас еще не&nbsp;было.');
-                if (!user.checkPassword(password)) throw new UserAuthError('Пароль не подходит, попробуй еще раз.');
+                if (!user) throw new UserAuthError('Мы хорошо поискали, c таким электронным ящиком у нас еще не регистрировались.');
 
+                let name = user.displayName.split(' ')[0];
+
+                if (!user.checkPassword(password)) throw new UserAuthError(`${name}, пароль не подходит, попробуй еще раз.`);
+
+                return user;
             })
             .then(user => {
                 done(null, user);

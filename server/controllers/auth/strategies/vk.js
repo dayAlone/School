@@ -1,6 +1,6 @@
 import config from 'config';
 import passport from 'koa-passport';
-import User from '../../models/user';
+import User from '../../../models/user';
 import { Strategy as VKontakteStrategy } from 'passport-vkontakte';
 
 export default function() {

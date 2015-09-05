@@ -10,6 +10,4 @@ files.forEach(file => {
     strategies[file] = require(`./${file}`)();
 });
 
-export default function() {
-    return strategies;
-};
+export default strategies;

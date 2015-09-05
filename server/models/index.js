@@ -1,6 +1,10 @@
 import fs from 'fs';
+const excludes = [
+    'index.js',
+    'fixtures'
+];
 const files = fs.readdirSync(__dirname)
-    .filter(file => { return !['index.js'].includes(file); })
+    .filter(file => { return !excludes.includes(file); })
     .map(file => { return file.replace('.js', ''); })
     .sort();
 
