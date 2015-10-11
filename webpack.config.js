@@ -1,3 +1,4 @@
+require('dotenv').config();
 require('babel/register');
 var webpack = require('webpack');
 var config = require('config');
@@ -32,7 +33,7 @@ var webpackConfig = {
     ]
 };
 
-if (env !== 'productions') {
+if (env !== 'production') {
     webpackConfig.plugins = webpackConfig.plugins.concat([
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
