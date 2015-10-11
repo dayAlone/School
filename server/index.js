@@ -13,4 +13,4 @@ app.keys = [config.secret];
 initMiddlewares(app);
 initControllers(app);
 
-app.listen(process.env.NODE_ENV === 'production' ? 80 : 3000);
+app.listen(process.env.NODE_ENV === 'production' ? ( process.env.PORT ? process.env.PORT : 80 ) : 3000);
