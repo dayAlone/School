@@ -12,7 +12,7 @@ export default {
     secret:   'mysecret',
     expires: 60 * 60 * 24,
     mongoose: {
-        uri:     'mongodb://localhost/testReact',
+        uri:     process.env.NODE_ENV === 'production' ? process.env.MONGOLAB_URI : 'mongodb://localhost/testReact',
         options: {
             server: {
                 socketOptions: {
