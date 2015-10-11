@@ -2,15 +2,15 @@ doctype html
 html
 
   head
-    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css")
-    link(rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
-
+    
   body(style="padding:40px 0")
     .container
         .row
             .col-xs-4.col-xs-offset-4
                 #app
                 script(type="application/javascript", src="/layout/js/app.js", async, defer)
+                link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css")
+                link(rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
             //--
                 if !auth
                     br
@@ -39,7 +39,6 @@ html
                                         span.fa.fa-vk
                     script.
                         document.getElementsByClassName('signup')[0].onclick = function(e) {
-                            console.log(1);
                             e.preventDefault()
                         }
                         /*
