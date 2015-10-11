@@ -9,4 +9,13 @@ routes.forEach(route => {
     if (typeof func === 'function') router.use(`/${route}`, func);
 });
 
+router
+.get(`/check`, function*() {
+    this.body = { user: this.req.user ? this.req.user : false };
+})
+.get('/logout', function* () {
+    this.logout();
+    this.redirect('/');
+});
+
 export default router.routes();

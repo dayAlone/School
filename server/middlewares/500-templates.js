@@ -8,13 +8,8 @@ var path = require('path');
 module.exports = function* (next) {
 
     var ctx = this;
-    /* default helpers */
-    this.locals = {
-        /* at the time of this middleware, user is unknown, so we make it a getter */
-        get user() {
-            return ctx.req.user; // passport sets this
-        }
-    };
+    /* default helpers*/
+    this.locals = ctx.state;
 
     this.render = function(templatePath, locals) {
         locals = locals || {};

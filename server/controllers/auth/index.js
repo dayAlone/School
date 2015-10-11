@@ -1,7 +1,7 @@
 import User from '../../models/user';
 import passport from 'koa-passport';
 import routes from './routes';
-import strategies from './strategies';
+import './strategies';
 
 export default function(app) {
     passport.serializeUser(function(user, done) {

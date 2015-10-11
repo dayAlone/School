@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== 'production') { require('./libs/trace'); }
 
 import koa from 'koa';
 import config from 'config';
-import mongoose from './libs/mongoose';
+import './libs/mongoose';
 
 import initMiddlewares from './middlewares';
 import initControllers from './controllers';

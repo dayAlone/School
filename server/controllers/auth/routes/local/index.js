@@ -1,12 +1,7 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
-
 const router = new Router();
 router
-    .get('/logout', function* () {
-        this.logout();
-        this.redirect('/');
-    })
     .post('/login', function* (next) {
         let ctx = this;
         yield passport.authenticate('local', {badRequestMessage: 'Заполните, пожалуйста, оба поля.'},

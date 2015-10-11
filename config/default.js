@@ -4,9 +4,13 @@ import { deferConfig as defer } from 'config/defer';
 const url = 'http://localhost:3000';
 
 export default {
+    __dirname: defer(function(cfg) {
+            return cfg.root;
+    }),
     // secret data can be moved to env variables
     // or a separate config
     secret:   'mysecret',
+    expires: 60 * 60 * 24,
     mongoose: {
         uri:     'mongodb://localhost/testReact',
         options: {
@@ -25,7 +29,7 @@ export default {
             iterations: process.env.NODE_ENV === 'production' ? 12000 : 1
         }
     },
-    __dirname: defer(function(cfg) {
+    '/': defer(function(cfg) {
         return cfg.root;
     }),
     template: {

@@ -1,3 +1,4 @@
+import passport from 'koa-passport';
 import fs from 'fs';
 const files = fs.readdirSync(__dirname)
     .filter(file => { return !['index.js'].includes(file); })
@@ -7,7 +8,8 @@ const files = fs.readdirSync(__dirname)
 const strategies = {};
 
 files.forEach(file => {
-    strategies[file] = require(`./${file}`)();
+    passport.use(require(`./${file}`));
+
 });
 
 export default strategies;

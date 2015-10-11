@@ -1,0 +1,13 @@
+{
+    "preset": "google",
+	"validateIndentation": 4,
+    "maximumLineLength": false,
+    "esnext": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": false,
+    "requireCurlyBraces": [
+        "while",
+        "for",
+        "do",
+        "with"
+    ]
+}

@@ -1,4 +1,4 @@
-var oid = require('../libs/oid');
+var oid = require('../../libs/oid');
 
 exports.User = [{
     _id:      oid('user'),

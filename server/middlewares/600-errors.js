@@ -1,4 +1,4 @@
-module.exports = function*(next) {
+export default function*(next) {
 
     try {
         yield* next;

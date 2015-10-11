@@ -1,12 +1,10 @@
 import User from '../../../models/user';
-import passport from 'koa-passport';
 import co from 'co';
 import { Strategy as LocalStrategy } from 'passport-local';
 
 function UserAuthError(message) { this.message = message; }
 
-export default function() {
-    passport.use(new LocalStrategy(
+export default new LocalStrategy(
         {usernameField: 'email', passwordField: 'password'},
         (email, password, done) => {
             co(function* () {
@@ -34,5 +32,4 @@ export default function() {
 
             });
         }
-    ));
-}
+    );

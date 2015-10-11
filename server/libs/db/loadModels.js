@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var co = require('co');
-var thunkify = require('thunkify');
 
 // tried using pow-mongoose-fixtures,
 // but it fails with capped collections, it calls remove() on them => everything dies
