@@ -1,7 +1,7 @@
 import path from 'path';
 import { deferConfig as defer } from 'config/defer';
 
-const url = 'http://localhost:3000';
+const url = process.env.NODE_ENV === 'production' ? 'http://testkoa.herokuapp.com': 'http://localhost:3000';
 
 export default {
     __dirname: defer(function(cfg) {
