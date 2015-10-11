@@ -24,14 +24,14 @@ export function authLogin(request) {
 export function authSocial(href) {
     return dispatch => {
         let popup = window.open('//' + window.location.host + href, 'popup', 'width=420, height=230, menubar=no, location=no, resizable=no, scrollbars=yes, status=no');
-
-        window.authCallback = (data) => {
-            if (data.error) {
-                dispatch(authError(data.error));
+        window.addEventListener('message', event => {
+            if (event.data.error) {
+                dispatch(authError(event.data.error));
             }
-            else dispatch(authSuccess(data.user));
+            else dispatch(authSuccess(event.data.user));
             popup.close();
-        };
+        }, false);
+
     };
 }
 

@@ -2,7 +2,10 @@ doctype html
 html
   head
       script.
-          window.opener.authCallback(!{data});
+          var url = window.location.href.split("/");
+          console.log(url[0] + "//" + url[2]);
+          window.opener.postMessage(!{data}, '*');
+          //window.close();
   body
 
                     
