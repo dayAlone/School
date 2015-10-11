@@ -15,9 +15,9 @@ export default new LocalStrategy(
 
                 if (!user) throw new UserAuthError('Мы хорошо поискали, c таким электронным ящиком у нас еще не регистрировались.');
 
-                let name = user.displayName.split(' ')[0];
+                let name = user.realName.split(' ')[0];
 
-                if (!user.checkPassword(password)) throw new UserAuthError(`${name}, пароль не подходит, попробуй еще раз.`);
+                if (!user.checkPassword(password)) throw new UserAuthError(`${name ? name +', п' : 'П' }ароль не подходит, попробуй еще раз.`);
 
                 return user;
             })
