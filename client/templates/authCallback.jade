@@ -1,9 +1,33 @@
 doctype html
 html
   head
+      
       script.
-          var url = window.location.href.split("/");
-          window.opener.postMessage(!{data}, '*');
+          if(window.opener) {
+              var url = window.location.href.split("/");
+              window.opener.postMessage(!{data}, '*');
+          }
   body
-
+    #spinner
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js")
+    script.
+         var target = document.getElementById('spinner')
+         var spinner = new Spinner({
+               lines     : 13,
+               length    : 21,
+               width     : 2,
+               radius    : 24,
+               corners   : 0,
+               rotate    : 0,
+               direction : 1,
+               color     : '#cf1237',
+               speed     : 1,
+               trail     : 68,
+               shadow    : false,
+               hwaccel   : false,
+               className : 'spinner',
+               zIndex    : 2e9,
+               top       : '50%',
+               left      : '50%'
+         }).spin(target);
                     
